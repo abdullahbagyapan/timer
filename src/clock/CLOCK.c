@@ -54,13 +54,13 @@ extern inline uint16_t CLOCK_GetTimer() {
 
  @date    08/04/2024
 
- @param   uint16_t ui16Timeout, the time to set
+ @param   uint16_t ui16TimeoutMs, the time to set in milliseconds format
 
  @return  None
 */
-extern inline void CLOCK_SetTimer(uint16_t ui16Timeout) {
+extern inline void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
 
-    CLOCK_TimerFuture_milliseconds = ui16Timeout;
+    CLOCK_TimerFuture_milliseconds = ui16TimeoutMs;
 
 }
 
