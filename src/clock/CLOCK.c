@@ -26,6 +26,31 @@ volatile uint16_t CLOCK_Timer_milliseconds;
 /*================================== Functions ==================================*/
 
 
+
+/******************** Inline Functions ********************/
+
+
+/*
+ @brief:  Return timer
+
+ @author  Abdullah Bagyapan
+
+ @date    08/04/2024
+
+ @param   None
+
+ @return  uint16_t, CLOCK_Timer_milliseconds, the timer
+*/
+extern inline uint16_t CLOCK_GetTimer() {
+
+    return CLOCK_Timer_milliseconds;
+}
+
+
+/******************** Public Functions ********************/
+
+
+
 void CLOCK_Init() {
 
     // Enable Timer/Counter0 module
