@@ -24,6 +24,8 @@ int main() {
     // Set Data Direction Register to 1 (output)
     DDRB |= _BV(DDB5);
 
+    CLOCK_Init();
+
     // Enable global interrupts
     sei();
 
