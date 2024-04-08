@@ -13,6 +13,13 @@
 
 // AVR libraries
 #include <avr/io.h>
+#include <avr/interrupt.h>
+
+
+/*================================== Defined Variables ==================================*/
+
+
+volatile uint16_t CLOCK_Timer_milliseconds;
 
 
 
@@ -33,7 +40,7 @@ void CLOCK_Init() {
     // Set prescaler to 64
     TCCR0B |= _BV(CS01) | _BV(CS00);
 
-    // Set timer frequency to 1 kHz
+    // Set timer frequency to 1 kHz (1 millisecond)
     OCR0A = F_CPU / 1000 / T_PRESCALER;
 
     // Enable Timer/Counter Output Compare Match Interrupt
@@ -42,3 +49,14 @@ void CLOCK_Init() {
 }
 
 
+
+/******************** Interrupt Handlers ********************/
+
+
+// Timer/Counter Output Compare Match Interrupt Handler
+// Increase timer on every 1 ms 
+ISR(TIMER0_COMPA_vect) {
+
+    CLOCK_Timer_milliseconds++;
+
+}
