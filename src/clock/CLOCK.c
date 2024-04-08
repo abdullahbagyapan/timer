@@ -20,7 +20,7 @@
 
 
 volatile uint16_t CLOCK_Timer_milliseconds;
-
+volatile uint16_t CLOCK_TimerFuture_milliseconds;
 
 
 /*================================== Functions ==================================*/
@@ -45,6 +45,26 @@ extern inline uint16_t CLOCK_GetTimer() {
 
     return CLOCK_Timer_milliseconds;
 }
+
+
+/*
+ @brief:  Set timer
+
+ @author  Abdullah Bagyapan
+
+ @date    08/04/2024
+
+ @param   uint16_t ui16Timeout, the time to set
+
+ @return  None
+*/
+extern inline void CLOCK_SetTimer(uint16_t ui16Timeout) {
+
+    CLOCK_TimerFuture_milliseconds = ui16Timeout;
+
+}
+
+
 
 
 /******************** Public Functions ********************/
