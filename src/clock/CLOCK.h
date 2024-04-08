@@ -18,7 +18,9 @@
 #define F_CPU           16000000
 #define T_PRESCALER     64
 
+
 /*================================== Functions ==================================*/
+
 
 
 /*
@@ -49,3 +51,34 @@ void CLOCK_Init();
  @return  uint8_t, if it is timeout return 1, otherwise return 0
 */
 uint8_t CLOCK_Timeout();
+
+
+
+/*
+ @brief:  Return timer
+
+ @author  Abdullah Bagyapan
+
+ @date    08/04/2024
+
+ @param   None
+
+ @return  uint16_t, CLOCK_Timer_milliseconds, the timer
+*/
+uint16_t CLOCK_GetTimer();
+
+
+
+/*
+ @brief:  Set timer
+
+ @author  Abdullah Bagyapan
+
+ @date    08/04/2024
+
+ @param   uint16_t ui16TimeoutMs, the time to set in milliseconds format
+
+ @return  None
+*/
+void CLOCK_SetTimer(uint16_t ui16TimeoutMs);
+

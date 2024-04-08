@@ -27,46 +27,6 @@ volatile uint16_t CLOCK_TimerFuture_milliseconds;
 
 
 
-/******************** Inline Functions ********************/
-
-
-/*
- @brief:  Return timer
-
- @author  Abdullah Bagyapan
-
- @date    08/04/2024
-
- @param   None
-
- @return  uint16_t, CLOCK_Timer_milliseconds, the timer
-*/
-extern inline uint16_t CLOCK_GetTimer() {
-
-    return CLOCK_Timer_milliseconds;
-}
-
-
-/*
- @brief:  Set timer
-
- @author  Abdullah Bagyapan
-
- @date    08/04/2024
-
- @param   uint16_t ui16TimeoutMs, the time to set in milliseconds format
-
- @return  None
-*/
-extern inline void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
-
-    CLOCK_TimerFuture_milliseconds = ui16TimeoutMs;
-
-}
-
-
-
-
 /******************** Public Functions ********************/
 
 
@@ -102,12 +62,28 @@ uint8_t CLOCK_Timeout() {
     ui8Timeout = 0;
 
     if (CLOCK_GetTimer() > CLOCK_TimerFuture_milliseconds) {
+
         return ui8Timeout = 1;
     }
 
     return ui8Timeout;
 
 }
+
+
+
+uint16_t CLOCK_GetTimer() {
+
+    return CLOCK_Timer_milliseconds;
+}
+
+
+
+void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
+
+    CLOCK_TimerFuture_milliseconds = CLOCK_GetTimer() + ui16TimeoutMs;
+}
+
 
 
 
