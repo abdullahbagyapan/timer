@@ -95,6 +95,22 @@ void CLOCK_Init() {
 
 
 
+uint8_t CLOCK_Timeout() {
+
+    uint8_t ui8Timeout;
+
+    ui8Timeout = 0;
+
+    if (CLOCK_GetTimer() > CLOCK_TimerFuture_milliseconds) {
+        return ui8Timeout = 1;
+    }
+
+    return ui8Timeout;
+
+}
+
+
+
 /******************** Interrupt Handlers ********************/
 
 
