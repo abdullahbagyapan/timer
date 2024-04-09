@@ -27,11 +27,38 @@ static volatile uint16_t _CLOCK_TimerFuture_milliseconds;
 
 
 
+/******************** Private Functions ********************/
+
+
+
+/*
+ @brief:  Reset timer
+
+ @author  Abdullah Bagyapan
+
+ @date    09/04/2024
+
+ @param   None
+
+ @return  None
+*/
+static void _CLOCK_ResetTimer(void) {
+
+    _CLOCK_Timer_milliseconds = 0;
+
+}
+
+
+
 /******************** Public Functions ********************/
 
 
+//TODO: enable Timer/Counter2 module
+//TODO: set Timer/Counter2 module for timeout
+
 
 void CLOCK_Init() {
+
 
     // Enable Timer/Counter0 module
     PRR &= ~_BV(PRTIM0);
@@ -81,20 +108,19 @@ uint16_t CLOCK_GetTimer() {
 
 void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
 
-    _CLOCK_TimerFuture_milliseconds = CLOCK_GetTimer() + ui16TimeoutMs;
+    _CLOCK_ResetTimer();
+
+    _CLOCK_TimerFuture_milliseconds = ui16TimeoutMs;
 }
 
 
 
 void CLOCK_DelayMs(uint16_t ui16TimeoutMs) {
 
-    uint16_t ui16DelayMs;
-
-    ui16DelayMs = CLOCK_GetTimer() + ui16TimeoutMs;
+    _CLOCK_ResetTimer();
 
     // wait until clock reach given timeout
-    // Note: integer overflow taken into account
-    while (ui16DelayMs != CLOCK_GetTimer()) {};
+    while (ui16TimeoutMs >= CLOCK_GetTimer()) {};
 
 }
 
@@ -104,9 +130,9 @@ void CLOCK_DelayMs(uint16_t ui16TimeoutMs) {
 
 
 // Timer/Counter Output Compare Match Interrupt Handler
-// Increase timer on every 1 ms 
 ISR(TIMER0_COMPA_vect) {
 
+    // Increase timer on every 1 ms 
     _CLOCK_Timer_milliseconds++;
 
 }
