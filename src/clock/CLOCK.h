@@ -82,3 +82,17 @@ uint16_t CLOCK_GetTimer();
 */
 void CLOCK_SetTimer(uint16_t ui16TimeoutMs);
 
+
+
+/*
+ @brief:  Delay until given time out
+
+ @author  Abdullah Bagyapan
+
+ @date    09/04/2024
+
+ @param   uint16_t ui16TimeoutMs, the time to set in milliseconds format
+
+ @return  None
+*/
+void CLOCK_DelayMs(uint16_t ui16TimeoutMs);

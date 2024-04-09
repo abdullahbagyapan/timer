@@ -86,6 +86,19 @@ void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
 
 
 
+void CLOCK_DelayMs(uint16_t ui16TimeoutMs) {
+
+    uint16_t ui16DelayMs;
+
+    ui16DelayMs = CLOCK_GetTimer() + ui16TimeoutMs;
+
+    // wait until clock reach given timeout
+    // Note: integer overflow taken into account
+    while (ui16DelayMs != CLOCK_GetTimer()) {};
+
+}
+
+
 
 /******************** Interrupt Handlers ********************/
 
