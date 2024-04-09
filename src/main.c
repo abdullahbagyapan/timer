@@ -21,28 +21,22 @@
 
 int main() {
 
-    // Set Data Direction Register to 1 (output)
+    // Set PORTB5 (built-in led) as output
     DDRB |= _BV(DDB5);
 
+    // Initialize clock
     CLOCK_Init();
 
     // Enable global interrupts
     sei();
 
-    // Set timer after 1000 Ms (1 second)
-    CLOCK_SetTimer(1000);
-
-
     while(1) {
 
-        if (CLOCK_Timeout()) {
+        // Toggle led
+        PORTB ^= _BV(PORTB5);
 
-            // Toggle led
-            PORTB ^= _BV(PORTB5);
-
-            // Set another timer
-            CLOCK_SetTimer(1000);
-        }
+        // Sleep 250 millisecond (0.25 second)
+        CLOCK_DelayMs(250);
 
     }
 
