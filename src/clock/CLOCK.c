@@ -19,8 +19,8 @@
 /*================================== Defined Variables ==================================*/
 
 
-volatile uint16_t CLOCK_Timer_milliseconds;
-volatile uint16_t CLOCK_TimerFuture_milliseconds;
+static volatile uint16_t _CLOCK_Timer_milliseconds;
+static volatile uint16_t _CLOCK_TimerFuture_milliseconds;
 
 
 /*================================== Functions ==================================*/
@@ -61,7 +61,7 @@ uint8_t CLOCK_Timeout() {
 
     ui8Timeout = 0;
 
-    if (CLOCK_GetTimer() > CLOCK_TimerFuture_milliseconds) {
+    if (CLOCK_GetTimer() > _CLOCK_TimerFuture_milliseconds) {
 
         return ui8Timeout = 1;
     }
@@ -74,14 +74,14 @@ uint8_t CLOCK_Timeout() {
 
 uint16_t CLOCK_GetTimer() {
 
-    return CLOCK_Timer_milliseconds;
+    return _CLOCK_Timer_milliseconds;
 }
 
 
 
 void CLOCK_SetTimer(uint16_t ui16TimeoutMs) {
 
-    CLOCK_TimerFuture_milliseconds = CLOCK_GetTimer() + ui16TimeoutMs;
+    _CLOCK_TimerFuture_milliseconds = CLOCK_GetTimer() + ui16TimeoutMs;
 }
 
 
@@ -107,6 +107,6 @@ void CLOCK_DelayMs(uint16_t ui16TimeoutMs) {
 // Increase timer on every 1 ms 
 ISR(TIMER0_COMPA_vect) {
 
-    CLOCK_Timer_milliseconds++;
+    _CLOCK_Timer_milliseconds++;
 
 }
