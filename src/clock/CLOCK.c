@@ -53,10 +53,6 @@ static void _CLOCK_ResetTimer(void) {
 /******************** Public Functions ********************/
 
 
-//TODO: enable Timer/Counter2 module
-//TODO: set Timer/Counter2 module for timeout
-
-
 void CLOCK_Init() {
 
 
